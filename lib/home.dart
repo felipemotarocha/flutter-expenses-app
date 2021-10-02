@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, deprecated_member_use
 
 import 'package:expenses_app/entities/transaction.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,6 @@ class Home extends StatelessWidget {
         title: const Text('Expenses App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             width: double.infinity,
@@ -37,6 +36,32 @@ class Home extends StatelessWidget {
               color: Colors.blue,
               child: Text('CHART'),
               elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Title',
+                    ),
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Amount',
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    child: const Text('Add Transaction'),
+                    textColor: Colors.purple,
+                  )
+                ],
+              ),
             ),
           ),
           Column(

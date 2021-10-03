@@ -22,6 +22,9 @@ class Home extends StatelessWidget {
     ),
   ];
 
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,13 +48,15 @@ class Home extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
                       labelText: 'Title',
                     ),
                   ),
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: amountController,
+                    decoration: const InputDecoration(
                       labelText: 'Amount',
                     ),
                   ),

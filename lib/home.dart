@@ -13,18 +13,20 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Expenses App'),
       ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            child: const Card(
-              color: Colors.blue,
-              child: Text('CHART'),
-              elevation: 5,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              child: const Card(
+                color: Colors.blue,
+                child: Text('CHART'),
+                elevation: 5,
+              ),
             ),
-          ),
-          const UserTransactions(),
-        ],
+            const UserTransactions(),
+          ],
+        ),
       ),
     );
   }

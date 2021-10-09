@@ -1,9 +1,8 @@
 // ignore_for_file: sized_box_for_whitespace, deprecated_member_use
-
-import 'package:flutter/material.dart';
-
 import 'entities/transaction.dart';
 
+import 'package:flutter/material.dart';
+import 'package:expenses_app/widgets/chart.dart';
 import 'package:expenses_app/widgets/user_transactions.dart';
 import 'package:expenses_app/widgets/new_transaction.dart';
 
@@ -31,6 +30,18 @@ class _HomeState extends State<Home> {
   //     date: DateTime.now(),
   //   ),
   // ];
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions
+        .where(
+          (element) => element.date.isAfter(
+            DateTime.now().subtract(
+              const Duration(days: 7),
+            ),
+          ),
+        )
+        .toList();
+  }
 
   void startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
@@ -73,13 +84,8 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              child: const Card(
-                color: Colors.blue,
-                child: Text('CHART'),
-                elevation: 5,
-              ),
+            Chart(
+              recentTransactions: _recentTransactions,
             ),
             UserTransactions(transactions: _userTransactions),
           ],

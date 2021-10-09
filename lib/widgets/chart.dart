@@ -1,4 +1,5 @@
 import 'package:expenses_app/entities/transaction.dart';
+import 'package:expenses_app/widgets/chart_bar.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +9,7 @@ class Chart extends StatelessWidget {
 
   const Chart({Key? key, required this.recentTransactions}) : super(key: key);
 
-  List<Map<String, Object>> get groupedTransactionValues {
+  List get groupedTransactionValues {
     return List.generate(
       7,
       (index) {
@@ -37,6 +38,13 @@ class Chart extends StatelessWidget {
     );
   }
 
+  double get totalSpending {
+    return groupedTransactionValues.fold(
+      0.0,
+      (previousValue, element) => previousValue + element['amount'],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -45,7 +53,12 @@ class Chart extends StatelessWidget {
       child: Row(
         children: groupedTransactionValues.map(
           (data) {
-            return Text('${data['day']}: ${data['amount']}');
+            return ChartBar(
+              label: data['day'],
+              spendingAmount: data['amount'],
+              spendingPctOfTotal:
+                  totalSpending == 0.0 ? 0.0 : data['amount'] / totalSpending,
+            );
           },
         ).toList(),
       ),

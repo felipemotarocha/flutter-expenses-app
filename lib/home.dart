@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Expenses App'),
+        title: const Text('Personal Expenses'),
         actions: [
           IconButton(
             onPressed: () {},
